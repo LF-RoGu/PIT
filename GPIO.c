@@ -8,7 +8,7 @@
 #include "MK64F12.h"
 #include "GPIO.h"
 
-uint8 GPIO_clockGating(GPIO_portNameType portName)
+uint8 GPIO_clockGating(gpio_port_name_t portName)
 {
 	switch(portName)/** Selecting the GPIO for clock enabling*/
 			{
@@ -34,7 +34,7 @@ uint8 GPIO_clockGating(GPIO_portNameType portName)
 	return(TRUE);
 }// end function
 
-uint8 GPIO_pinControlRegister(GPIO_portNameType portName,uint8 pin,const GPIO_pinControlRegisterType*  pinControlRegister)
+uint8_t GPIO_pin_control_register(gpio_port_name_t portName, uint8_t pin, gpio_pin_control_register_t* pinControlRegister)
 {
 
 	switch(portName)
@@ -61,7 +61,7 @@ uint8 GPIO_pinControlRegister(GPIO_portNameType portName,uint8 pin,const GPIO_pi
 	return(TRUE);
 }
 
-void GPIO_writePORT(GPIO_portNameType portName, uint32 Data )
+void GPIO_writePORT(gpio_port_name_t portName, uint32 Data )
 {
 	switch(portName)
 		{
@@ -83,7 +83,7 @@ void GPIO_writePORT(GPIO_portNameType portName, uint32 Data )
 				break;
 		}
 }
-uint32 GPIO_readPORT(GPIO_portNameType portName)
+uint32 GPIO_readPORT(gpio_port_name_t portName)
 {
 	switch(portName)
 	{
@@ -106,7 +106,7 @@ uint32 GPIO_readPORT(GPIO_portNameType portName)
 			break;
 	}
 }
-uint8 GPIO_readPIN(GPIO_portNameType portName, uint8 pin)
+uint8 GPIO_readPIN(gpio_port_name_t portName, uint8 pin)
 {
 
 	switch(portName)
@@ -131,7 +131,7 @@ uint8 GPIO_readPIN(GPIO_portNameType portName, uint8 pin)
 			break;
 	}
 }
-void GPIO_setPIN(GPIO_portNameType portName, uint8 pin)
+void GPIO_setPIN(gpio_port_name_t portName, uint8 pin)
 {
 	switch(portName)
 	{
@@ -154,7 +154,7 @@ void GPIO_setPIN(GPIO_portNameType portName, uint8 pin)
 			break;
 	}
 }
-void GPIO_clearPIN(GPIO_portNameType portName, uint8 pin)
+void GPIO_clearPIN(gpio_port_name_t portName, uint8 pin)
 {
 	switch(portName)
 	{
@@ -177,7 +177,7 @@ void GPIO_clearPIN(GPIO_portNameType portName, uint8 pin)
 			break;
 	}
 }
-void GPIO_tooglePIN(GPIO_portNameType portName, uint8 pin)
+void GPIO_tooglePIN(gpio_port_name_t portName, uint8 pin)
 {
 	switch(portName)
 	{
@@ -200,7 +200,7 @@ void GPIO_tooglePIN(GPIO_portNameType portName, uint8 pin)
 			break;
 	}
 }
-void GPIO_dataDirectionPORT(GPIO_portNameType portName ,uint32 direction)
+void GPIO_dataDirectionPORT(gpio_port_name_t portName ,uint32 direction)
 {
 	switch(portName)
 	{
@@ -224,7 +224,7 @@ void GPIO_dataDirectionPORT(GPIO_portNameType portName ,uint32 direction)
 	}
 
 }
-void GPIO_dataDirectionPIN(GPIO_portNameType portName, uint8 State, uint8 pin)
+void GPIO_dataDirectionPIN(gpio_port_name_t portName, uint8 State, uint8 pin)
 {
 	switch(portName)
 	{
