@@ -24,12 +24,7 @@
  */
 void PIT_delay(PIT_Timer_t pitTimer,float systemClock ,float perior);
 
-
-
 void PIT_clockGating(void);
-
-uint8 PIT_interruptFlagStatus(void);
-
 
 uint8 PIT_getIntrStutus(void);
 
