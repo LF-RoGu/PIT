@@ -8,7 +8,7 @@
 #include "MK64F12.h"
 #include "PIT.h"
 
-void decToHexa(int value)
+void decToHexa(uint32 value)
 {
 	uint8 hex[100];
 	uint32 i = 0;
