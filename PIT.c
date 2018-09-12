@@ -8,37 +8,23 @@
 #include "MK64F12.h"
 #include "PIT.h"
 
-void decToHexa(uint32 value)
+uint32 decToHexa(uint32 value)
 {
-	uint8 hex[100];
-	uint32 i = 0;
-	while(FALSE != value)
-	{
-		/**Temporal var to store remainder**/
-		uint32 temp = 0;
-		/**Store remainder in temp var**/
-		temp = value % 16;
-		/****/
-		if(temp < 10)
-		{
-			hex[i] = temp + 48;
-			i++;
-		}
-		else
-		{
-			hex[i] = temp + 55;
-			i++;
-		}
-		value = value/16;
-	}
+	uint32 hex = 0;
+	uint32 base = 0;
+	for(;value;value /= 10, base *= 16)
+		hex += (value%10) * base;
+	return hex;
 }
 
-void PIT_delay(PIT_Timer_t pitTimer,float systemClock ,float perior)
+void PIT_delay(PIT_Timer_t pitTimer,float systemClock ,float period)
 {
 	/**Es necesario hacer un cast para pasar del numero float a entero, y de ahi a hexa**/
-	float cycles = perior/systemClock;
+	float clockPeriod = 1/systemClock;
+	float cycles = (period/clockPeriod) - 1;
 	cycles = (uint32)cycles;
-	PIT_LDVAL = decToHexa(cycles);
+	PIT->CHANNEL[pitTimer].LDVAL = decToHexa(cycles);
+	PIT->CHANNEL[pitTimer].TCTRL |= PIT_TCTRL_TIE_MASK | PIT_TCTRL_TEN_MASK;
 }
 
 void PIT_clockGating(void);
