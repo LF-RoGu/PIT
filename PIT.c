@@ -27,7 +27,15 @@ void PIT_delay(PIT_Timer_t pitTimer,float systemClock ,float period)
 	PIT->CHANNEL[pitTimer].TCTRL |= PIT_TCTRL_TIE_MASK | PIT_TCTRL_TEN_MASK;
 }
 
-void PIT_clockGating(void);
+void PIT_clockGating(void)
+{
+	/**
+	 * Enable PIT clock**/
+	SIM_SCGC6 |= SIM_SCGC6_PIT_MASK;
+	/**
+	* Enable portD clock**/
+	SIM_SCGC5 |= SIM_SCGC5_PORTB_MASK;
+}
 
 uint8 PIT_getIntrStutus(void);
 
